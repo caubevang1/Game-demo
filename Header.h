@@ -401,7 +401,7 @@ bool LoadMedia()
 	}
 	if (!gCharacterTextureBlast.LoadFromFile("imgs/character/blast.png", gRenderer))
 	{
-		std::cout << "Failed to load character_run2 image." << std::endl;
+		std::cout << "Failed to load character_blast image." << std::endl;
 		success = false;
 	}
 	else
