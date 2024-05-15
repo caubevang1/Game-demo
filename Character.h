@@ -15,8 +15,6 @@ public:
 
 	void HandleEvent(SDL_Event& e, Mix_Chunk *gJump, int& mana, Mix_Chunk* gAttack);
 
-	void SetCoolDown();
-
 	bool Fight();
 
 	void Move();

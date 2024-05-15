@@ -25,11 +25,12 @@ Energy::~Energy()
     EnergyTexture = nullptr;
 }
 void Energy::Move(const int& acceleration) {
+    srand(time(NULL));
     posX += -(ENERGY_SPEED + acceleration);
     if (posX + MAX_ENERGY_WIDTH < 0) {
         isEaten = false;
         posX = rand() % (SCREEN_WIDTH + ENERGY_POSITION_RANGE) + SCREEN_WIDTH;
-        posY = rand() % (290 - 360 + 1) + ENERGY_MIN_HEIGHT;
+        posY = rand() % (290 - 360 ) + ENERGY_MIN_HEIGHT;
     }
 }
 void Energy::LoadFromFile(std::string path, SDL_Renderer* gRenderer)

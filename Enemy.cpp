@@ -2,7 +2,6 @@
 
 Enemy::Enemy(int _type)
 {
-	
 	posX = 0;
 	posY = 0;
 
@@ -14,7 +13,7 @@ Enemy::Enemy(int _type)
 	{
 		
 		posX = rand() % (SCREEN_WIDTH + ENEMY_POSITION_RANGE) + SCREEN_WIDTH;
-		posY = rand() % (ENEMY_MAX_HEIGHT - ENEMY_MIN_HEIGHT + 1) + ENEMY_MIN_HEIGHT;
+		posY = rand() % (ENEMY_MAX_HEIGHT - ENEMY_MIN_HEIGHT ) + ENEMY_MIN_HEIGHT;
 	}
 	else if (type == ON_GROUND_ENEMY)
 	{
@@ -84,7 +83,6 @@ void Enemy::Move(const int &acceleration)
 	if (posX + MAX_ENEMY_WIDTH < 0)
 	{
 		IfDead = false;
-		srand(time(NULL));
 		posX = rand() % (SCREEN_WIDTH + ENEMY_POSITION_RANGE) + SCREEN_WIDTH;
 
 		if (type == BEAR_ENEMY)
@@ -93,7 +91,7 @@ void Enemy::Move(const int &acceleration)
 		}
 		if (type == IN_AIR_ENEMY)
 		{
-			posY = rand() % (ENEMY_MAX_HEIGHT - ENEMY_MIN_HEIGHT + 1) + ENEMY_MIN_HEIGHT;
+			posY = rand() % (ENEMY_MAX_HEIGHT - ENEMY_MIN_HEIGHT ) + ENEMY_MIN_HEIGHT;
 		}
 		if (type == ON_GROUND_ENEMY)
 		{

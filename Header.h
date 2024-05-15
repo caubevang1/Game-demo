@@ -12,7 +12,6 @@
 #include "Hud.h"
 
 int startTime = SDL_GetTicks();
-Uint32 begin;
 
 SDL_Window* gWindow = nullptr;
 SDL_Renderer* gRenderer = nullptr;
@@ -34,11 +33,11 @@ SDL_Rect gBackButton[BUTTON_SPRITES];
 SDL_Rect gPauseButton[BUTTON_SPRITES];
 SDL_Rect gContinueButton[BUTTON_SPRITES];
 SDL_Rect gPlayAgainButton[BUTTON_SPRITES];
-SDL_Rect gCharacterClips[8];
-SDL_Rect gCharacterClips2[7];
-SDL_Rect gCharacterClipsBlast[3];
+SDL_Rect gCharacterClips[RUNNING_FRAMES];
+SDL_Rect gCharacterClips2[WEAPON_FRAMES];
+SDL_Rect gCharacterClipsBlast[BLAST_FRAMES];
 SDL_Rect gEnemyClips[FLYING_FRAMES];
-SDL_Rect gEnemyClipsBear[9];
+SDL_Rect gEnemyClipsBear[BEAR_FRAMES];
 
 LTexture gMenuTexture;
 LTexture gInstructionTexture;
@@ -75,7 +74,7 @@ Button BackButton(BACK_BUTTON_POSX, BACK_BUTTON_POSY);
 Button PauseButton(PAUSE_BUTTON_POSX, PAUSE_BUTTON_POSY);
 Button ContinueButton(CONTINUE_BUTTON_POSX, CONTINUE_BUTTON_POSY);
 
-int mana = 0;
+int mana = 3;
 
 Character character;
 Enemy enemy;
@@ -483,6 +482,7 @@ void PlayAgain()
 	int frame_Character_Blast = 0;
 	int frame_Enemy = 0;
 	int frame_Enemy2 = 0;
+	mana = 3;
 	character.RenewStatus();
 	std::string highscore = GetHighScoreFromFile("high_score.txt");
 
@@ -521,9 +521,7 @@ void PlayAgain()
 					gContinueButtonTexture, Game_State, gClick);
 				kiBlast.HandleEvent(e, character, gRenderer, mana, gBlast);
 				character.HandleEvent(e, gJump, mana, gAttack);
-
 			}
-			character.SetCoolDown();
 			SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 			SDL_RenderClear(gRenderer);
 
@@ -579,21 +577,26 @@ void PlayAgain()
 				BATTERY_6.Render(gRenderer, nullptr);
 				break;
 			}
+
 			SDL_Rect* currentClip_Enemy = nullptr;
 
-			enemy1.Move(acceleration);
+			enemy1.Move(acceleration + 3);
 			currentClip_Enemy = &gEnemyClipsBear[frame_Enemy2 / SLOW_FRAME_ENEMY2];
 			enemy1.Render(gRenderer, currentClip_Enemy);
 
 			enemy2.Move(acceleration);
 			enemy2.Render(gRenderer);
 
-			enemy3.Move(acceleration);
+			enemy3.Move(acceleration + 1);
 			currentClip_Enemy = &gEnemyClips[frame_Enemy / SLOW_FRAME_ENEMY];
 			enemy3.Render(gRenderer, currentClip_Enemy);
 
 			GenerateBullet(bullet, gRenderer);
-			bullet.Fire(enemy3.GetPosX() - 5, enemy3.GetPosY() + 3);
+			if (!enemy3.IsDead())
+			{
+				bullet.Fire(enemy3.GetPosX() - 5, enemy3.GetPosY() + 3);
+			}
+			
 			bullet.Move(acceleration);
 			bullet.Render(gRenderer);
 

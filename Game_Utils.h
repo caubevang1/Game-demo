@@ -8,6 +8,7 @@
 #include "KiBlast.h"
 #include "Energy.h"
 #include "EnemyBullet.h"
+
 void Close();
 
 std::string GetHighScoreFromFile(std::string path);
@@ -75,7 +76,7 @@ void GenerateBullet(EnemyBullet& bullet, SDL_Renderer* gRenderer);
 void GenerateEnemy(Enemy& enemy1,
     Enemy& enemy2,
     Enemy& enemy3,
-    SDL_Rect(&gEnemyClips)[FLYING_FRAMES], SDL_Rect(&gEnemyClips2)[9],
+    SDL_Rect(&gEnemyClips)[FLYING_FRAMES], SDL_Rect(&gEnemyClips2)[BEAR_FRAMES],
     SDL_Renderer* gRenderer);
 
 bool CheckColission(Character character,

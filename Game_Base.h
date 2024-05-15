@@ -23,7 +23,7 @@
 
 #define TIME_MAX 1000
 #define GROUND 430
-#define MAX_HEIGHT 250
+#define MAX_HEIGHT 225
 
 #define BASE_OFFSET_SPEED 0
 
@@ -50,10 +50,10 @@
 #define ENEMY_MAX_HEIGHT 300
 #define ENEMY_MIN_HEIGHT 330
 
-#define ENEMY_POSITION_RANGE 250
-#define ENEMY1_RANGE 100
-#define ENEMY2_RANGE 350
-#define ENEMY3_RANGE 500
+#define ENEMY_POSITION_RANGE 350
+#define ENEMY1_RANGE 200
+#define ENEMY2_RANGE 450
+#define ENEMY3_RANGE 600
 
 #define SLOW_FRAME_CHAR 4
 #define SLOW_FRAME_ENEMY 4
@@ -61,6 +61,12 @@
 
 #define IS_REPEATITIVE -1
 #define NOT_REPEATITIVE 0
+
+#define ENERGY_MAX_HEIGHT 290
+#define ENERGY_MIN_HEIGHT 360
+#define ENERGY_POSITION_RANGE 250
+#define ENERGY_SPEED 7
+#define MAX_ENERGY_WIDTH 100
 
 #define SMALL_BUTTON 1
 #define PLAY_BUTTON 3
@@ -106,7 +112,10 @@ const int HIGH_SCORE_POSX = 830;
 const int HIGH_SCORE_POSY = 80;
 
 const int RUNNING_FRAMES = 8;
+const int WEAPON_FRAMES = 7;
+const int BLAST_FRAMES = 3;
 const int FLYING_FRAMES = 5;
+const int BEAR_FRAMES = 9;
 static const int BACKGROUND_0 = 10;
 static const int BACKGROUND_1 = 5;
 

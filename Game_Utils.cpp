@@ -58,7 +58,6 @@ int UpdateGameTimeAndScore(int& time,
 void RenderScrollingBackground(std::vector <double>& offsetSpeed,
 	LTexture(&gBackgroundTexture)[BACKGROUND_0], int num, SDL_Renderer* gRenderer)
 {
-	//std::cout << num << ' ';
 	std::vector<double> layerSpeed;
 	double LAYER_SPEED = 0.0;
 
@@ -336,7 +335,7 @@ void GenerateBullet(EnemyBullet& bullet, SDL_Renderer* gRenderer)
 void GenerateEnemy(Enemy& enemy1,
 	Enemy& enemy2,
 	Enemy& enemy3,
-	SDL_Rect(&gEnemyClips)[FLYING_FRAMES], SDL_Rect(&gEnemyClips2)[9],
+	SDL_Rect(&gEnemyClips)[FLYING_FRAMES], SDL_Rect(&gEnemyClips2)[BEAR_FRAMES],
 	SDL_Renderer * gRenderer)
 {
 	enemy1.LoadFromFile("imgs/enemy/enemy1_.png", gRenderer);
@@ -627,7 +626,7 @@ void ControlCharFrame(int &frame)
 void ControlCharFrame2(int& frame)
 {
 	frame += FRAME_INCREASEMENT;
-	if (frame / 4 >= 7)
+	if (frame / 4 >= WEAPON_FRAMES)
 	{			
 		frame = 7;
 	}
@@ -635,7 +634,7 @@ void ControlCharFrame2(int& frame)
 void ControlCharFrameBlast(int& frame, Character character)
 {
 	frame += FRAME_INCREASEMENT;
-	if (frame / 4 >= 3)
+	if (frame / 4 >= BLAST_FRAMES)
 	{
 		frame = 0;
 	}
@@ -653,7 +652,7 @@ void ControlEnemyFrame(int &frame)
 void ControlEnemy2Frame(int& frame)
 {
 	frame += FRAME_INCREASEMENT;
-	if  (frame / SLOW_FRAME_ENEMY2 >= 9)
+	if  (frame / SLOW_FRAME_ENEMY2 >= BEAR_FRAMES)
 	{
 		frame = 0;
 	}

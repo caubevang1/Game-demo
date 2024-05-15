@@ -1,11 +1,7 @@
 #pragma once
 #include "Game_Base.h"
 #include "LTexture.h"
-#define ENERGY_MAX_HEIGHT 300
-#define ENERGY_MIN_HEIGHT 330
-#define ENERGY_POSITION_RANGE 250
-#define ENERGY_SPEED 7
-#define MAX_ENERGY_WIDTH 100
+
 
 class Energy 
 {

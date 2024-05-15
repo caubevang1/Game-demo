@@ -8,7 +8,6 @@ Character::Character()
 	lastUseTime = 0;
 	cooldownTime = 2000;
 	isFightingPressed = false;
-	cnt = 0;
 	CurrentTime = 0;
 }
 
@@ -41,7 +40,7 @@ void Character::HandleEvent(SDL_Event& e, Mix_Chunk *gJump, int& mana, Mix_Chunk
 				} 
 				break;
 			}
-			case SDLK_BACKSPACE:
+			case SDLK_RETURN:
 			{
 				if (OnGround() && mana > 0)
 				{
@@ -50,7 +49,6 @@ void Character::HandleEvent(SDL_Event& e, Mix_Chunk *gJump, int& mana, Mix_Chunk
 						Mix_PlayChannel(MIX_CHANNEL, gAttack, NOT_REPEATITIVE);
 						CurrentTime = SDL_GetTicks();
 						status = FIGHT;						
-						cnt = 20;
 						mana--;
 					}
 					
@@ -75,14 +73,6 @@ void Character::HandleEvent(SDL_Event& e, Mix_Chunk *gJump, int& mana, Mix_Chunk
 	
 }
 
-void Character::SetCoolDown()
-{
-	if (cnt > 0)
-	{
-		cnt--;
-	}
-	
-}
 bool Character::Fight() 
 {
 	return status == FIGHT;
